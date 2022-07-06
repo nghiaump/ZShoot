@@ -2569,7 +2569,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  _playerFoot: {fileID: 0}
   _navAgent: {fileID: 2902200310821456412}
   _stoppingDistance: 2
   _animator: {fileID: 267428445576742520}
@@ -2653,8 +2652,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 267428445576742520}
-  _damage: 20
-  _player: {fileID: 0}
+  _damage: 5
 --- !u!1 &6652427340472459059
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,28 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveByJoyStick : MonoBehaviour
+public class Jumping : MonoBehaviour
 {
-    [SerializeField]
-    private JoyStick _joyStick;
-
     [HideInInspector]
     [SerializeField]
     private CharacterController _characterController;
 
-    [Space]
-    [Header("Walking & Running")]
     [SerializeField]
-    private float _speed = 3;
+    private float _jumpHeight;
 
-    public bool IsMoving { get; private set; }
+    [SerializeField]
+    private float _groundDistance;
 
-    [Space]
-    [Header("Jumping")]
-    [SerializeField]
-    private float _groundDistance = 1.12f;
-    [SerializeField]
-    private float _jumpHeight = 2f;
     private Vector3 _velocity;
     private float _gravity = -9.81f;
     private float _lastJumpTime = 0;
@@ -37,32 +27,21 @@ public class MoveByJoyStick : MonoBehaviour
     void Update()
     {
         LimitVelocityY();
-        UpdateMoving();
         UpdateJumping();
     }
 
     private void LimitVelocityY()
     {
-        _velocity.y += _gravity * Time.deltaTime;
         if (_velocity.y < -2)
         {
             _velocity.y = -2;
         }
     }
 
-    private void UpdateMoving()
-    {
-        Vector2 input = new Vector2(_joyStick.Input.x, _joyStick.Input.y);
-        //_bodyRb.velocity = transform.TransformDirection(new Vector3(input.x, 0, input.y));
-        Vector3 direction = transform.forward * input.y + transform.right * input.x;
-        _characterController.Move(direction * _speed * Time.deltaTime);
-
-        IsMoving = input != Vector2.zero;
-    }
-
     private void UpdateJumping()
     {
-        _characterController.Move(_velocity * Time.deltaTime);
+        _velocity.y += _gravity * Time.deltaTime;
+        //_characterController.Move(_velocity * Time.deltaTime);
         if (ButtonToKeyConverter.s_buttonJumpDown && Time.time - _lastJumpTime > _interval)
         {
             if (IsGrounded())
