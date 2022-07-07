@@ -2,13 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerLooking : MonoBehaviour
+public class RotateByMouse : MonoBehaviour
 {
     [SerializeField]
     private Transform _cameraHolder;
-
-    [SerializeField]
-    private JoyStick _joyStick;
 
     [SerializeField]
     private float _sensitivity = 9.0f;
@@ -22,7 +19,7 @@ public class PlayerLooking : MonoBehaviour
 
     private void Start()
     {
-        //Cursor.lockState = CursorLockMode.Locked;
+        Cursor.lockState = CursorLockMode.Locked;
         // Khoi dong cham de tranh vi tri chuot ban dau
         Invoke(nameof(EnableRotation), 1f);
     }
@@ -39,13 +36,13 @@ public class PlayerLooking : MonoBehaviour
 
     private void UpdateYaw()
     {
-        float mouseDx = _joyStick.Input.x;
+        float mouseDx = Input.GetAxis("Mouse X");
         transform.Rotate(0, mouseDx * _sensitivity, 0);
     }
 
     private void UpdatePitch()
     {
-        float mouseDy = _joyStick.Input.y;
+        float mouseDy = Input.GetAxis("Mouse Y");
         _cameraHolder.Rotate(-mouseDy * _sensitivity, 0, 0);
         ClampPitchAngle();
     }

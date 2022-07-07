@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class JoyStick : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class JoyStick : MonoBehaviour, IDragHandler, IEndDragHandler
 {
     [SerializeField]
     private RectTransform _joyStickHandle;
@@ -19,8 +19,6 @@ public class JoyStick : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     {
         _joyStickHandleOgPosition = _joyStickHandle.position;
     }
-
-    public void OnBeginDrag(PointerEventData eventData) { }
 
     public void OnDrag(PointerEventData eventData)
     {

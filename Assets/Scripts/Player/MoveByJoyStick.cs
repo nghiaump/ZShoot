@@ -4,26 +4,21 @@ using UnityEngine;
 
 public class MoveByJoyStick : MonoBehaviour
 {
-    [SerializeField]
-    private JoyStick _joyStick;
-
     [HideInInspector]
     [SerializeField]
     private CharacterController _characterController;
-
-    [Space]
-    [Header("Walking & Running")]
     [SerializeField]
-    private float _speed = 3;
-
-    public bool IsMoving { get; private set; }
-
-    [Space]
-    [Header("Jumping")]
+    private JoyStick _joyStick;
     [SerializeField]
-    private float _groundDistance = 1.12f;
+    private float _speed = 7;
+    [SerializeField]
+    private AudioSource _footstepSound;
+    private bool _isMoving = false;
+    private float _minMoveDistance = 1e-2f;
+
     [SerializeField]
     private float _jumpHeight = 2f;
+    private float _groundDistance = 1.12f;
     private Vector3 _velocity;
     private float _gravity = -9.81f;
     private float _lastJumpTime = 0;
@@ -53,10 +48,31 @@ public class MoveByJoyStick : MonoBehaviour
     private void UpdateMoving()
     {
         Vector2 input = new Vector2(_joyStick.Input.x, _joyStick.Input.y);
+        Move(input);
+        PlayMovingSound(input);
+        UpdateMovingState(input);
+    }
+    private void Move(Vector2 input)
+    {
         Vector3 direction = transform.forward * input.y + transform.right * input.x;
         _characterController.Move(direction * _speed * Time.deltaTime);
+    }
 
-        IsMoving = input != Vector2.zero;
+    private void PlayMovingSound(Vector2 input)
+    {
+        if (input.magnitude > _minMoveDistance && _isMoving == false)
+        {
+            _footstepSound.Play();
+        }
+        else if (input.magnitude <= _minMoveDistance)
+        {
+            _footstepSound.Pause();
+        }
+    }
+
+    private void UpdateMovingState(Vector2 input)
+    {
+        _isMoving = (input.magnitude > _minMoveDistance);
     }
 
     private void UpdateJumping()
@@ -77,4 +93,5 @@ public class MoveByJoyStick : MonoBehaviour
     {
         return Physics.Raycast(transform.position, Vector3.down, _groundDistance);
     }
+
 }

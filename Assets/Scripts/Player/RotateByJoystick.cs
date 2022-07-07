@@ -2,24 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RotateBySwipe: MonoBehaviour
+public class RotateByJoystick : MonoBehaviour
 {
     [SerializeField]
     private Transform _cameraHolder;
 
     [SerializeField]
-    private float _sensitivity = 9.0f;
+    private JoyStick _joyStick;
+
+    [SerializeField]
+    private float _sensitivity = 0.1f;
 
     [SerializeField]
     private float _minPitch = -45.0f;
     [SerializeField]
-    private float _maxPitch = 45.0f;
+    private float _maxPitch = 30.0f;
 
     private bool allowRotation;
 
     private void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
         // Khoi dong cham de tranh vi tri chuot ban dau
         Invoke(nameof(EnableRotation), 1f);
     }
@@ -36,14 +38,14 @@ public class RotateBySwipe: MonoBehaviour
 
     private void UpdateYaw()
     {
-        float mouseDx = Input.GetAxis("Mouse X");
-        transform.Rotate(0, mouseDx * _sensitivity, 0);
+        float joystickDx = _joyStick.Input.x;
+        transform.Rotate(0, joystickDx * _sensitivity, 0);
     }
 
     private void UpdatePitch()
     {
-        float mouseDy = Input.GetAxis("Mouse Y");
-        _cameraHolder.Rotate(-mouseDy * _sensitivity, 0, 0);
+        float joystickDy = _joyStick.Input.y;
+        _cameraHolder.Rotate(-joystickDy * _sensitivity, 0, 0);
         ClampPitchAngle();
     }
 
