@@ -2351,6 +2351,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4000013149834228, guid: 6857ff1d3761e21479727f3b27cc8f68, type: 3}
   m_PrefabInstance: {fileID: 210468920}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &214293990 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3292690243647620181, guid: 8cf822dd83532b54fba577c514480fcc, type: 3}
+  m_PrefabInstance: {fileID: 2110815586581308872}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ae621d4b4be0469a894e06de318661d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &232023910
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28291,6 +28302,18 @@ PrefabInstance:
       propertyPath: m_IsKinematic
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7858870278811512729, guid: 8cf822dd83532b54fba577c514480fcc, type: 3}
+      propertyPath: _joyStick
+      value: 
+      objectReference: {fileID: 214293990}
+    - target: {fileID: 7858870278811512729, guid: 8cf822dd83532b54fba577c514480fcc, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7858870278811512729, guid: 8cf822dd83532b54fba577c514480fcc, type: 3}
+      propertyPath: _sensitivity
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7858870278811512732, guid: 8cf822dd83532b54fba577c514480fcc, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -28335,7 +28358,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7858870278811512727, guid: 8cf822dd83532b54fba577c514480fcc, type: 3}
+    - {fileID: 7858870278811512726, guid: 8cf822dd83532b54fba577c514480fcc, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 8cf822dd83532b54fba577c514480fcc, type: 3}
 --- !u!4 &4998163812519453588
 Transform:

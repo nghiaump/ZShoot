@@ -53,7 +53,6 @@ public class MoveByJoyStick : MonoBehaviour
     private void UpdateMoving()
     {
         Vector2 input = new Vector2(_joyStick.Input.x, _joyStick.Input.y);
-        //_bodyRb.velocity = transform.TransformDirection(new Vector3(input.x, 0, input.y));
         Vector3 direction = transform.forward * input.y + transform.right * input.x;
         _characterController.Move(direction * _speed * Time.deltaTime);
 
